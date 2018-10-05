@@ -23,7 +23,9 @@ import java.util.HashMap;
 import spit.comps.collegemate.HelperClasses.AppConstants;
 import spit.comps.collegemate.HelperClasses.HttpHandler;
 import spit.comps.collegemate.HelperClasses.RequestHandler;
+import spit.comps.collegemate.Items.ProjectType1Item;
 import spit.comps.collegemate.RecyclerAdapter.AnnouncementRecyclerAdapter;
+import spit.comps.collegemate.RecyclerAdapter.ProjectType1RecyclerAdapter;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -33,6 +35,8 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class AnnouncementFragment extends Fragment {
 
+
+    String JSON_NEWS_STRING="";
     public AnnouncementFragment() {
         // Required empty public constructor
     }
@@ -51,11 +55,115 @@ public class AnnouncementFragment extends Fragment {
         recyclerView=(RecyclerView)view.findViewById(R.id.fragment_announcement_recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        new getAnnouncementList().execute();
+        new GetProjectList().execute();
 
         return view;
     }
 
+
+    private class GetProjectList extends AsyncTask<Void,Void,String>
+    {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog=new ProgressDialog(getActivity());
+            progressDialog.setMessage("Fetching data");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            HashMap<String,String> args = new HashMap<>();
+            args.put("email","mithil@gmail.com");
+            RequestHandler sh = new RequestHandler();
+
+            String jsonStr = sh.sendPostRequest(AppConstants.get_announcement_list,args);
+            return jsonStr;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            if (progressDialog.isShowing())
+            {
+                progressDialog.hide();
+            }
+
+            JSON_NEWS_STRING = s;
+
+            Toast.makeText(getActivity(), "H:"+JSON_NEWS_STRING, Toast.LENGTH_SHORT).show();
+
+            JSONObject jsonObject = null;
+            String jsonstring1="";
+            try {
+
+                jsonObject = new JSONObject(JSON_NEWS_STRING);
+                jsonstring1 = (String) jsonObject.get("data");
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            //Toast.makeText(getActivity(), "A:"+jsonstring1, Toast.LENGTH_SHORT).show();
+
+            int status = readNews(jsonstring1);
+
+            if (status==1)
+            {
+
+            }
+            else
+            {
+
+            }
+
+            recyclerView.setAdapter(new AnnouncementRecyclerAdapter(items,getActivity()));
+        }
+    }
+
+    private int readNews(String JSON_NEWS_STRING){
+
+        try {
+            JSONArray result = new JSONArray(JSON_NEWS_STRING);
+
+            //String jsonstring1 = (String) jsonObject.get("data");
+            //JSONArray result = new JSONArray(jsonstring1);
+
+            for(int i=0;i<result.length();i++)
+            {
+                JSONObject js = result.getJSONObject(i);
+
+                JSONObject c = js.getJSONObject("fields");
+
+                String date = c.getString("date");
+                String time = c.getString("time");
+                String title = c.getString("title");
+                String importance = c.getString("importance");
+                String description = c.getString("description");
+                String link = c.getString("link");
+
+                AnnouncementItem object = new AnnouncementItem(String.valueOf(i+1),date,time,title,importance,description,link);
+                items.add(object);
+            }
+            Toast.makeText(getActivity(), "No.:"+items.size(), Toast.LENGTH_SHORT).show();
+            return 1;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
+
+    /*
     private class getAnnouncementList extends AsyncTask<Void,Void,Void>
     {
 
@@ -134,5 +242,6 @@ public class AnnouncementFragment extends Fragment {
             recyclerView.setAdapter(new AnnouncementRecyclerAdapter(items,getActivity()));
         }
     }
+    */
 
 }

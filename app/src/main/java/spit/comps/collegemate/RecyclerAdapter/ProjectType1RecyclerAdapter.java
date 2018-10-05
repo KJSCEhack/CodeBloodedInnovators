@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import spit.comps.collegemate.Items.ProjectType1Item;
+import spit.comps.collegemate.ProjectType1DetailsActivity;
 import spit.comps.collegemate.R;
 
 public class ProjectType1RecyclerAdapter extends RecyclerView.Adapter<ProjectType1RecyclerAdapter.ViewHolder> {
@@ -47,14 +48,17 @@ public class ProjectType1RecyclerAdapter extends RecyclerView.Adapter<ProjectTyp
             @Override
             public void onClick(View view) {
 
-                /*Intent intent=new Intent(context, ProjectType1DetailsActivity.class);
-                intent.putExtra("Project_id",arrayList.get(position).id);
-                intent.putExtra("Title",arrayList.get(position).title);
+                Intent intent=new Intent(context, ProjectType1DetailsActivity.class);
+                intent.putExtra("Event_id",arrayList.get(position).id);
+                intent.putExtra("Title",arrayList.get(position).name);
                 intent.putExtra("Description",arrayList.get(position).description);
-                intent.putExtra("Department",arrayList.get(position).department);
-                intent.putExtra("City",arrayList.get(position).city);
-                intent.putExtra("Image_url",arrayList.get(position).img_url);
-                context.startActivity(intent);*/
+                intent.putExtra("Time",arrayList.get(position).time);
+                intent.putExtra("Venue",arrayList.get(position).venue);
+                intent.putExtra("Poster",arrayList.get(position).poster);
+                intent.putExtra("Organizer",arrayList.get(position).organizer);
+                intent.putExtra("Contact",arrayList.get(position).contact);
+                intent.putExtra("Event_type",arrayList.get(position).event_type);
+                context.startActivity(intent);
             }
         });
     }

@@ -144,10 +144,13 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.addToBackStack(null).commit();
         }
 
-        /*
-        if (id == R.id.nav_attendance) {
-            // Handle the camera action
+
+        else if (id == R.id.nav_announcements) {
+            getSupportFragmentManager().popBackStackImmediate();
+            fragmentTransaction.replace(R.id.HomeScreen_FragmentContainer, new AnnouncementFragment());
+            fragmentTransaction.addToBackStack(null).commit();
         }
+        /*
         else if (id == R.id.nav_events) {
 
         }

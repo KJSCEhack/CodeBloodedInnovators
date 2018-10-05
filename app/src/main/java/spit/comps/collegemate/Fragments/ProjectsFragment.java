@@ -83,62 +83,7 @@ public class ProjectsFragment extends Fragment {
 
             String jsonStr = sh.sendPostRequest(AppConstants.get_type1_projects,args);
             return jsonStr;
-
-            /*if (jsonStr != null) {
-                try {
-                    JSONObject jsonObject = new JSONObject(jsonStr);
-                    String jsonstring1 = (String) jsonObject.get("data");
-                    JSONArray result = new JSONArray(jsonstring1);
-
-                    for(int i=0;i<result.length();i++)
-                    {
-                        JSONObject js = result.getJSONObject(i);
-
-                        JSONObject c = js.getJSONObject("fields");
-
-                        String id = c.getString("id");
-                        String name = c.getString("name");
-
-                        String organizer = c.getString("organizer");
-                        String contact = c.getString("contact");
-
-                        String date = c.getString("date");
-                        String venue = c.getString("venue");
-
-                        String description = c.getString("description");
-                        String time = c.getString("time");
-
-                        String regs = c.getString("registration_token");
-                        String poster = c.getString("poster");
-
-                        String event_type = c.getString("event_type");
-
-                        ProjectType1Item object = new ProjectType1Item(id,name,organizer,contact,date,venue,description,time,
-                                regs,poster,event_type);
-
-                        items.add(object);
-                    }
-
-                } catch (final JSONException e) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getActivity(),"Couldn't get data from Server. Please try again later", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                }
-            } else {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getActivity(),"No Internet Connection",Toast.LENGTH_LONG).show();
-                    }
-                });
-
             }
-            return null; */
-        }
 
         @Override
         protected void onPostExecute(String s) {

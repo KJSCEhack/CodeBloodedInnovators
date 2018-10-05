@@ -33,7 +33,7 @@
                     android:text="Title"/>
 
                 <TextView
-                    android:id="@+id/details_project_type1_title"
+                    android:id="@+id/details_project_type1_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DEsc"/>
@@ -191,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18dp"
-                    android:text="Department"/>
+                    android:text="Time and Venue"/>
 
                 <TextView
                     android:id="@+id/details_project_type1_department"
@@ -220,7 +220,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18dp"
-                    android:text="City"/>
+                    android:text="Organizer"/>
 
                 <TextView
                     android:id="@+id/details_project_type1_city"
@@ -240,7 +240,7 @@
             android:id="@+id/details_project_type1_submit_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Like"/>
+            android:text="Register"/>
 
     </LinearLayout>
 
