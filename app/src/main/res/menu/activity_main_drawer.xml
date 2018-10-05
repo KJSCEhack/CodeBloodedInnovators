@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_attendance"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Attendance" />
+        <item
+            android:id="@+id/nav_events"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Events Workshops" />
+        <item
+            android:id="@+id/nav_timetable"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Time Table" />
+    </group>
+
+    <item android:title="Communication">
+        <menu>
+            <item
+                android:id="@+id/nav_announcements"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Announcements" />
+            <item
+                android:id="@+id/nav_placements"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Placements" />
+            <item
+                android:id="@+id/nav_exams"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Exams" />
+
+        </menu>
+    </item>
+
+    <item android:title="Resources">
+        <menu>
+            <item
+                android:id="@+id/nav_notesresources"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Notes Resources" />
+            <item
+                android:id="@+id/nav_pastpapers"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Past Papers" />
+
+        </menu>
+    </item>
+
+
+</menu>
