@@ -48,8 +48,10 @@ public class MainActivity extends AppCompatActivity
         {
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
         }
-
+        
         //End
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -109,8 +111,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        final FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        //final FragmentTransaction fragmentTransaction = fm.beginTransaction();
 
+        /*
         if (id == R.id.nav_attendance) {
             // Handle the camera action
         }
@@ -123,13 +126,10 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_announcements) {
 
         }
-        else if (id == R.id.nav_placements) {
-
-        }
         else if (id == R.id.nav_exams) {
 
         }
-
+        */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

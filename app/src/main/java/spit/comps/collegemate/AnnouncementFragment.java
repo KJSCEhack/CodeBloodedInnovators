@@ -69,7 +69,7 @@ public class AnnouncementFragment extends Fragment {
 
             HttpHandler sh = new HttpHandler();
 
-            String jsonStr = sh.makeServiceCall(AppConstants.get_announcement_list);
+            String jsonStr = sh.makeServiceCall("");
 
             if (jsonStr != null) {
                 try {

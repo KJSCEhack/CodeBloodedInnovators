@@ -1,5 +1,6 @@
 package spit.comps.collegemate;
 
+import android.app.DownloadManager;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.TextInputEditText;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                 getProjectNews(String.valueOf(uid_edittext.getText()),String.valueOf(password_edittext.getText()));
             }
         });
+
     }
 
     private void getProjectNews(final String uid, final String password) {
@@ -55,7 +57,8 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onPostExecute(String s) {
+            protected void onPostExecute(String s)
+            {
                 super.onPostExecute(s);
                 Toast.makeText(LoginActivity.this, "He"+s, Toast.LENGTH_SHORT).show();
                 JSON_NEWS_STRING = s;
@@ -69,7 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     Toast.makeText(LoginActivity.this, "I", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
