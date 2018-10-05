@@ -7,7 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,15 +16,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import spit.comps.collegemate.Fragments.Home2Fragment;
 import spit.comps.collegemate.HelperClasses.AppConstants;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FragmentManager fm;
+    FrameLayout HomeScreen_FragmentContainer;
+
+    String backStageName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,11 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+
+        HomeScreen_FragmentContainer=(FrameLayout)findViewById(R.id.HomeScreen_FragmentContainer);
+        fm=getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.HomeScreen_FragmentContainer,new Home2Fragment()).commit();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -125,6 +133,9 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         //final FragmentTransaction fragmentTransaction = fm.beginTransaction();
+
+        final FragmentTransaction fragmentTransaction = fm.beginTransaction();
+
 
         /*
         if (id == R.id.nav_attendance) {
