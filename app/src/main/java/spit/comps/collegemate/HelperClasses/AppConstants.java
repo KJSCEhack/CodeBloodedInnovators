@@ -4,5 +4,6 @@ public class AppConstants {
 
     public static final String LOGIN_PREFS="LOGIN_PREFS";
 
-    public static final String validate_user="https://cbik.herokuapp.com/login/";
+    public static final String validate_user="https://cbikk.herokuapp.com/login/";
+    public static final String get_type1_projects="https://cbikk.herokuapp.com/event/";
 }

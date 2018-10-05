@@ -20,6 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import spit.comps.collegemate.Fragments.Home2Fragment;
+import spit.comps.collegemate.Fragments.ProjectsFragment;
 import spit.comps.collegemate.HelperClasses.AppConstants;
 
 public class MainActivity extends AppCompatActivity
@@ -136,6 +137,12 @@ public class MainActivity extends AppCompatActivity
 
         final FragmentTransaction fragmentTransaction = fm.beginTransaction();
 
+        if (id==R.id.nav_events)
+        {
+            getSupportFragmentManager().popBackStackImmediate();
+            fragmentTransaction.replace(R.id.HomeScreen_FragmentContainer, new ProjectsFragment());
+            fragmentTransaction.addToBackStack(null).commit();
+        }
 
         /*
         if (id == R.id.nav_attendance) {

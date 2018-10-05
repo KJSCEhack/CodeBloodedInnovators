@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ViewListener;
 
@@ -76,8 +77,12 @@ public class Home2Fragment extends Fragment {
         if (position==0)
         {
             imageView.setImageResource(R.drawable.navmenuheaderbg);
-            textView.setText("Hello");
+
+            textView.setText("SPIT Mumbai");
+
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/firstfirebase-a064e.appspot.com/o/Entrance.jpg?alt=media&token=33ccc6aa-9bc1-489e-98c2-376b7a8d4f4e").into(imageView);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
         }
 
         else if (position==1)
