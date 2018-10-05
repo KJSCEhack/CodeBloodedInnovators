@@ -15,6 +15,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.mortbay.util.ajax.JSON;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,9 +61,19 @@ public class LoginActivity extends AppCompatActivity {
             protected void onPostExecute(String s)
             {
                 super.onPostExecute(s);
-                Toast.makeText(LoginActivity.this, "He"+s, Toast.LENGTH_SHORT).show();
                 JSON_NEWS_STRING = s;
-                int status = readNews(JSON_NEWS_STRING);
+
+                JSONObject jsonObject = null;
+                String jsonstring1="";
+                try {
+                    jsonObject = new JSONObject(JSON_NEWS_STRING);
+                    jsonstring1 = (String) jsonObject.get("data");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                int status = readNews(jsonstring1);
 
                 if (status==1)
                 {
@@ -70,15 +81,15 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(LoginActivity.this, "I", Toast.LENGTH_SHORT).show();
+                    //Toa
                 }
             }
 
             @Override
             protected String doInBackground(Void... params) {
                 HashMap<String,String> args = new HashMap<>();
-                args.put("uid","2016");
-                args.put("password","12345");
+                args.put("uid",uid);
+                args.put("password",password);
 
                 RequestHandler rh = new RequestHandler();
                 String s = rh.sendPostRequest(AppConstants.validate_user,args);
@@ -93,30 +104,24 @@ public class LoginActivity extends AppCompatActivity {
         JSONObject jsonObject = null;
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
         try {
-            jsonObject = new JSONObject(JSON_NEWS_STRING);
-            JSONArray result = jsonObject.getJSONArray("user");
+            JSONArray result = new JSONArray(JSON_NEWS_STRING);
+            JSONObject object = result.getJSONObject(0);
+            JSONObject jo = object.getJSONObject("fields");
 
-            for (int i = 0; i < result.length(); i++) {
-                JSONObject jo = result.getJSONObject(i);
-                String name = jo.getString("name");
-                String email = jo.getString("email");
-                String branch = jo.getString("branch");
-                String year = jo.getString("year");
+            String name = jo.getString("name");
+            String email = jo.getString("email");
+            String branch = jo.getString("branch");
+            String year = jo.getString("year");
 
-
-                SharedPreferences prefs = getSharedPreferences(AppConstants.LOGIN_PREFS, MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("login_status", "1");
-                editor.putString("name",name);
-                editor.putString("email",email);
-                editor.putString("branch",branch);
-                editor.putString("year",year);
-                editor.commit();
-
-                return 1;
-                //newsItemArrayList.add(new ProjectType1NewsItem(date,time,headline,description));
-            }
-
+            SharedPreferences prefs = getSharedPreferences(AppConstants.LOGIN_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("login_status", "1");
+            editor.putString("name",name);
+            editor.putString("email",email);
+            editor.putString("branch",branch);
+            editor.putString("year",year);
+            editor.commit();
+            return 1;
             /*
             if (newsItemArrayList.size()==0)
             {
@@ -130,7 +135,6 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
             return 0;
         }
-        return 0;
     }
 
 }

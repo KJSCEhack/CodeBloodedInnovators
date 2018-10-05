@@ -17,6 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import spit.comps.collegemate.HelperClasses.AppConstants;
 
@@ -48,10 +50,8 @@ public class MainActivity extends AppCompatActivity
         {
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
         }
-        
+
         //End
-
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +70,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.nav_header_name);
+        TextView navEmail = (TextView) headerView.findViewById(R.id.nav_header_email);
+
+        SharedPreferences prefs = getSharedPreferences(AppConstants.LOGIN_PREFS, MODE_PRIVATE);
+        navUsername.setText(prefs.getString("name", "0"));
+        navEmail.setText(prefs.getString("email", "0"));
+
 
 
     }
@@ -100,7 +109,11 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            SharedPreferences prefs = getSharedPreferences(AppConstants.LOGIN_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("login_status", "0");
+            editor.commit();
+            startActivity(new Intent(this,LoginActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
