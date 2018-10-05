@@ -6,15 +6,15 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_attendance"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_check_circle_black_24dp"
             android:title="Attendance" />
         <item
             android:id="@+id/nav_events"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Events/Workshops" />
+            android:icon="@drawable/ic_menu_event_black_24dp"
+            android:title="Events Workshops" />
         <item
             android:id="@+id/nav_timetable"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_school_black_24dp"
             android:title="Time Table" />
     </group>
 
@@ -22,15 +22,11 @@
         <menu>
             <item
                 android:id="@+id/nav_announcements"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_notifications_active_black_24dp"
                 android:title="Announcements" />
             <item
-                android:id="@+id/nav_placements"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Placements" />
-            <item
                 android:id="@+id/nav_exams"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_school_black_24dp"
                 android:title="Exams" />
 
         </menu>
@@ -40,11 +36,11 @@
         <menu>
             <item
                 android:id="@+id/nav_notesresources"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_subject_black_24dp"
                 android:title="Notes Resources" />
             <item
                 android:id="@+id/nav_pastpapers"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_content_paste_black_24dp"
                 android:title="Past Papers" />
 
         </menu>

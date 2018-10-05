@@ -1,6 +1,7 @@
 package spit.comps.collegemate;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +18,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import spit.comps.collegemate.HelperClasses.AppConstants;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -30,8 +33,21 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //Login Logic
-        Intent i = new Intent(this, LoginActivity.class);
-        startActivity(i);
+
+        try
+        {
+            SharedPreferences prefs = getSharedPreferences(AppConstants.LOGIN_PREFS, MODE_PRIVATE);
+            String login_status= prefs.getString("login_status", "0");
+
+            if (!login_status.equals("1"))
+            {
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            }
+
+        }catch (Exception e)
+        {
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+        }
 
         //End
 
