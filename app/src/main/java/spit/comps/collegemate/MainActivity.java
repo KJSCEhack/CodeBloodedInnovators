@@ -123,9 +123,6 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_announcements) {
 
         }
-        else if (id == R.id.nav_placements) {
-
-        }
         else if (id == R.id.nav_exams) {
 
         }

@@ -2,6 +2,7 @@ package spit.comps.collegemate;
 
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,10 +18,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import spit.comps.collegemate.HelperClasses.AppConstants;
 import spit.comps.collegemate.HelperClasses.HttpHandler;
+import spit.comps.collegemate.HelperClasses.RequestHandler;
 import spit.comps.collegemate.RecyclerAdapter.AnnouncementRecyclerAdapter;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -67,9 +72,14 @@ public class AnnouncementFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... params) {
 
-            HttpHandler sh = new HttpHandler();
+            SharedPreferences prefs = getActivity().getSharedPreferences(AppConstants.LOGIN_PREFS, MODE_PRIVATE);
 
-            String jsonStr = sh.makeServiceCall(AppConstants.get_announcement_list);
+            HashMap<String,String> args = new HashMap<>();
+            args.put("email", prefs.getString("email", ""));
+
+            RequestHandler rh = new RequestHandler();
+
+            String jsonStr = rh.sendPostRequest(AppConstants.get_announcement_list, args);
 
             if (jsonStr != null) {
                 try {
