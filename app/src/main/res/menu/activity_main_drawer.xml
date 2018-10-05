@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_events"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Events Workshops" />
+            android:title="Events/Workshops" />
         <item
             android:id="@+id/nav_timetable"
             android:icon="@drawable/ic_menu_slideshow"

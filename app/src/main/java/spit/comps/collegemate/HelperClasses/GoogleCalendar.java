@@ -1,4 +1,4 @@
-package spit.comps.collegemate.HelperClass;
+package spit.comps.collegemate.HelperClasses;
 
 import android.util.Log;
 
@@ -19,7 +19,6 @@ import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.EventReminder;
-import com.google.api.services.calendar.model.Events;
 
 import java.io.IOException;
 import java.io.InputStream;
