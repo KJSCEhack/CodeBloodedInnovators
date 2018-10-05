@@ -7,7 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,13 +16,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
+import spit.comps.collegemate.Fragments.Home2Fragment;
 import spit.comps.collegemate.HelperClasses.AppConstants;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FragmentManager fm;
+    FrameLayout HomeScreen_FragmentContainer;
+
+    String backStageName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        HomeScreen_FragmentContainer=(FrameLayout)findViewById(R.id.HomeScreen_FragmentContainer);
+        fm=getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.HomeScreen_FragmentContainer,new Home2Fragment()).commit();
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -68,6 +78,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.nav_header_name);
+        TextView navEmail = (TextView) headerView.findViewById(R.id.nav_header_email);
+
+        SharedPreferences prefs = getSharedPreferences(AppConstants.LOGIN_PREFS, MODE_PRIVATE);
+        navUsername.setText(prefs.getString("name", "0"));
+        navEmail.setText(prefs.getString("email", "0"));
+
 
 
     }
@@ -98,7 +117,11 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            SharedPreferences prefs = getSharedPreferences(AppConstants.LOGIN_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("login_status", "0");
+            editor.commit();
+            startActivity(new Intent(this,LoginActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -109,8 +132,12 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        //final FragmentTransaction fragmentTransaction = fm.beginTransaction();
+
         final FragmentTransaction fragmentTransaction = fm.beginTransaction();
 
+
+        /*
         if (id == R.id.nav_attendance) {
             // Handle the camera action
         }
@@ -126,7 +153,7 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_exams) {
 
         }
-
+        */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

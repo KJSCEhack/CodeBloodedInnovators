@@ -9,4 +9,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <string name="college_vision">Keeping in view the growing and changing needs of Industry and society, we at S.P.I.T. are committed to creating an environment which will raise the intellectual and moral standards of our students. Our endeavor is to strive for the overall development of students, thereby enabling them to accept challenges. In tune with this our vision is\n\n<b>To build a renowned institute which will produce world class graduate engineers with social sensitivity.</b></string>
+    <string name="college_mission"><ol>
+        <li>Provide high quality education in engineering and technology promoting the Indian Values and Ethos that will prepare the participants to lead lives of personal integrity and civic responsibility in a global society.\n</li>
+        <li>Promote an Educational Environment that combines academic study with the excitement of intellectual curiosity for engineers of tomorrow.\n</li>
+        <li>Enhance career opportunities for students through Industry-Institute interaction, value-added courses and projects in cutting edge technology.\n</li>
+        <li>Inculcate Entrepreneurial mindset in students to make them job creators.\n</li>
+        <li>Focus on applied research to create next generation technologies.</li>
+    </ol> </string>
+
 </resources>
