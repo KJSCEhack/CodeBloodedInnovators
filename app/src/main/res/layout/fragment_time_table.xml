@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <LinearLayout android:layout_marginTop="64dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -6,6 +10,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:text="Your schedule for today:"
+        android:layout_margin="2dp"
+        android:padding="2dp"/>
+    
     <com.robertlevonyan.views.expandable.Expandable
         app:exp_headerBackgroundColor="@color/colorPrimary"
         android:background="@color/colorAccent"
@@ -15,11 +27,11 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textSize="24dp"
+            android:textSize="18dp"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8.00 - 9.00\t\tEmbeddded System and RTOS"/>
+            android:text="9.00 - 10.00\t\tTCS"/>
 
         <TextView
             android:textSize="16dp"
@@ -27,7 +39,7 @@
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prof. Deepshree Vibhandik"/>
+            android:text="Prof. Sunil Ghane"/>
 
     </com.robertlevonyan.views.expandable.Expandable>
     <com.robertlevonyan.views.expandable.Expandable
@@ -39,11 +51,11 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textSize="24dp"
+            android:textSize="18dp"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8.00 - 9.00\t\tEmbeddded System and RTOS"/>
+            android:text="10.00 - 11.00\t\tEmbeddded System"/>
 
         <TextView
             android:textSize="16dp"
@@ -67,7 +79,31 @@
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8.00 - 9.00\t\tEmbeddded System and RTOS"/>
+            android:text="11.15 - 1.15\t\tDate Warehousing Lab"/>
+
+        <TextView
+            android:textSize="16dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prof. Jyoti Ramteke"/>
+
+    </com.robertlevonyan.views.expandable.Expandable>
+    <com.robertlevonyan.views.expandable.Expandable
+        app:exp_headerBackgroundColor="@color/colorPrimary"
+        android:background="@color/colorAccent"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.00 - 3.00\t\tAlgorithms"/>
 
         <TextView
             android:textSize="16dp"
@@ -78,5 +114,30 @@
             android:text="Prof. Deepshree Vibhandik"/>
 
     </com.robertlevonyan.views.expandable.Expandable>
+    <com.robertlevonyan.views.expandable.Expandable
+        app:exp_headerBackgroundColor="@color/colorPrimary"
+        android:background="@color/colorAccent"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.00 - 4.00\t\tComputer Networks"/>
+
+        <TextView
+            android:textSize="16dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prof. Abhijeet Salunkhe"/>
+
+    </com.robertlevonyan.views.expandable.Expandable>
 
 </LinearLayout>
+</ScrollView>
