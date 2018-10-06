@@ -1,0 +1,130 @@
+{
+  "project_info": {
+    "project_number": "852126539773",
+    "firebase_url": "https://firstfirebase-a064e.firebaseio.com",
+    "project_id": "firstfirebase-a064e",
+    "storage_bucket": "firstfirebase-a064e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852126539773:android:78db6412a676d00f",
+        "android_client_info": {
+          "package_name": "com.example.tejas.firstfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852126539773-hao2e3ppier6d84vu285gt7ge261ls6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3__zQu5V6GbjM4vDEotwG6uFGzgFBJU0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852126539773:android:42410f964895a459",
+        "android_client_info": {
+          "package_name": "com.example.tejas.spitaccess2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852126539773-a82nk7ecqrqhqppt48hr6hq9v7l4peoa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tejas.spitaccess2",
+            "certificate_hash": "9df023707dd7f49521f3eef6bf48a944d84e3c63"
+          }
+        },
+        {
+          "client_id": "852126539773-hao2e3ppier6d84vu285gt7ge261ls6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3__zQu5V6GbjM4vDEotwG6uFGzgFBJU0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852126539773-hao2e3ppier6d84vu285gt7ge261ls6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852126539773:android:50acefd5370984b5",
+        "android_client_info": {
+          "package_name": "spit.comps.collegemate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852126539773-ev2d5vmia6t4ku9snm5s9mnvoppk3rlk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "spit.comps.collegemate",
+            "certificate_hash": "9df023707dd7f49521f3eef6bf48a944d84e3c63"
+          }
+        },
+        {
+          "client_id": "852126539773-hao2e3ppier6d84vu285gt7ge261ls6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3__zQu5V6GbjM4vDEotwG6uFGzgFBJU0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852126539773-hao2e3ppier6d84vu285gt7ge261ls6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
