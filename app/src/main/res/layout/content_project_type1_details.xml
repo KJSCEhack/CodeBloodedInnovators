@@ -255,10 +255,21 @@
             android:background="@color/colorPrimaryDark"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:id="@+id/details_project_type1_calendar_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to calendar"/>
+
+        <Button
+            android:textColor="@color/white"
+            android:background="@color/colorPrimaryDark"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:id="@+id/details_project_type1_submit_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register"/>
+
 
     </LinearLayout>
 

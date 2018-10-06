@@ -6,6 +6,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,12 +25,13 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import spit.comps.collegemate.HelperClasses.AppConstants;
+import spit.comps.collegemate.HelperClasses.GoogleCalendar;
 import spit.comps.collegemate.HelperClasses.RequestHandler;
 
 public class ProjectType1DetailsActivity extends AppCompatActivity {
 
     TextView name,description,organizer,time,type;
-    Button register;
+    Button register,calendar;
     ImageView imageView,callButton;
 
     @Override
@@ -54,7 +56,12 @@ public class ProjectType1DetailsActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString(getIntent().getStringExtra("Event_id"), "1");
                     editor.commit();
-                    Toast.makeText(ProjectType1DetailsActivity.this, "Thanks for Like!", Toast.LENGTH_SHORT).show();
+                    try {
+                        GoogleCalendar.addEvent();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(ProjectType1DetailsActivity.this, "Thanks for Like! Event added to calendar!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -68,6 +75,7 @@ public class ProjectType1DetailsActivity extends AppCompatActivity {
         organizer = (TextView) findViewById(R.id.details_project_type1_org);
         time = (TextView) findViewById(R.id.details_project_type1_time);
         register = (Button) findViewById(R.id.details_project_type1_submit_btn);
+        calendar = (Button) findViewById(R.id.details_project_type1_calendar_btn);
 
         callButton = (ImageView) findViewById(R.id.details_project_call);
 
@@ -85,6 +93,32 @@ public class ProjectType1DetailsActivity extends AppCompatActivity {
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
                 callIntent.setData(Uri.parse("tel:" + getIntent().getStringExtra("Contact")));
                 startActivity(callIntent);
+            }
+        });
+
+        calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences prefs = getSharedPreferences(AppConstants.REGISTER_PREFS, MODE_PRIVATE);
+                String event_status= prefs.getString(getIntent().getStringExtra("Event_calendar"), "0");
+
+                if (event_status.equals("0"))
+                {
+                    //API
+                    Uri calendarUri = CalendarContract.CONTENT_URI
+                            .buildUpon()
+                            .appendPath("time")
+                            .build();
+
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString(getIntent().getStringExtra("Event_calendar"), "1");
+                    editor.commit();
+                    startActivity(new Intent(Intent.ACTION_VIEW, calendarUri));
+                }
+                else
+                {
+                    Toast.makeText(ProjectType1DetailsActivity.this, "Already Added!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -135,6 +169,7 @@ public class ProjectType1DetailsActivity extends AppCompatActivity {
 
                 RequestHandler rh = new RequestHandler();
                 String s = rh.sendPostRequest(AppConstants.event_like,args);
+
                 return s;
             }
         }
