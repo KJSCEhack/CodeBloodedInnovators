@@ -61,7 +61,7 @@ public class ProjectType1DetailsActivity extends AppCompatActivity {
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-                    Toast.makeText(ProjectType1DetailsActivity.this, "Thanks for Like! Event added to calendar!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProjectType1DetailsActivity.this, "Thanks for Like!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

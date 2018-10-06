@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home_black_24dp"
+            android:title="Home" />
+        <item
             android:id="@+id/nav_attendance"
             android:icon="@drawable/ic_check_circle_black_24dp"
             android:title="Attendance" />
@@ -18,7 +22,8 @@
             android:title="Time Table" />
     </group>
 
-    <item android:title="Communication">
+    <item android:title="Communication"
+        android:checkable="true">
         <menu>
             <item
                 android:id="@+id/nav_announcements"
@@ -32,7 +37,8 @@
         </menu>
     </item>
 
-    <item android:title="Resources">
+    <item android:title="Resources"
+        android:checkable="true">
         <menu>
             <item
                 android:id="@+id/nav_notesresources"

@@ -186,7 +186,7 @@ public class ProjectsFragment extends Fragment {
 
                 items.add(object);
             }
-            Toast.makeText(getActivity(), "No.:"+items.size(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "No.:"+items.size(), Toast.LENGTH_SHORT).show();
             return 1;
 
         } catch (JSONException e) {

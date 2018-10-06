@@ -31,6 +31,7 @@ import org.altbeacon.beacon.Region;
 
 import spit.comps.collegemate.Fragments.Home2Fragment;
 import spit.comps.collegemate.Fragments.ProjectsFragment;
+import spit.comps.collegemate.Fragments.SpeechToText;
 import spit.comps.collegemate.Fragments.TimeTableFragment;
 import spit.comps.collegemate.HelperClasses.AppConstants;
 
@@ -101,8 +102,7 @@ public class MainActivity extends AppCompatActivity
         navUsername.setText(prefs.getString("name", "0"));
         navEmail.setText(prefs.getString("email", "0"));
 
-
-
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     public void onResume() {
@@ -202,8 +202,16 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.HomeScreen_FragmentContainer, new ProjectsFragment());
             fragmentTransaction.addToBackStack(null).commit();
         }
+        else if (id == R.id.nav_home) {
+            boolean isFragmentinStack = fm.popBackStackImmediate(backStageName, 0);
+            if(!isFragmentinStack){
+                Home2Fragment fragment = Home2Fragment.newInstance();
+                fragmentTransaction.replace(R.id.HomeScreen_FragmentContainer, fragment);
+                backStageName = fragment.getClass().getName();
+                fragmentTransaction.addToBackStack(backStageName).commit();
+            }
 
-
+        }
         else if (id == R.id.nav_announcements) {
             getSupportFragmentManager().popBackStackImmediate();
             fragmentTransaction.replace(R.id.HomeScreen_FragmentContainer, new AnnouncementFragment());
@@ -215,10 +223,12 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.HomeScreen_FragmentContainer, new TimeTableFragment());
             fragmentTransaction.addToBackStack(null).commit();
         }
-        /*
-        else if (id == R.id.nav_timetable) {
-
+        else if (id == R.id.nav_notesresources) {
+            getSupportFragmentManager().popBackStackImmediate();
+            fragmentTransaction.replace(R.id.HomeScreen_FragmentContainer, new SpeechToText());
+            fragmentTransaction.addToBackStack(null).commit();
         }
+        /*
         else if (id == R.id.nav_announcements) {
 
         }

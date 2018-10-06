@@ -96,7 +96,7 @@ public class AnnouncementFragment extends Fragment {
 
             JSON_NEWS_STRING = s;
 
-            Toast.makeText(getActivity(), "H:"+JSON_NEWS_STRING, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "H:"+JSON_NEWS_STRING, Toast.LENGTH_SHORT).show();
 
             JSONObject jsonObject = null;
             String jsonstring1="";
@@ -152,7 +152,7 @@ public class AnnouncementFragment extends Fragment {
                 AnnouncementItem object = new AnnouncementItem(String.valueOf(i+1),date,time,title,importance,description,link);
                 items.add(object);
             }
-            Toast.makeText(getActivity(), "No.:"+items.size(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "No.:"+items.size(), Toast.LENGTH_SHORT).show();
             return 1;
 
         } catch (JSONException e) {
