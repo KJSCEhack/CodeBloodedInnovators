@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity
 
         //End
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        */
 
         HomeScreen_FragmentContainer=(FrameLayout)findViewById(R.id.HomeScreen_FragmentContainer);
         fm=getSupportFragmentManager();

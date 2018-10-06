@@ -39,7 +39,7 @@ public class ProjectType1RecyclerAdapter extends RecyclerView.Adapter<ProjectTyp
     @Override
     public void onBindViewHolder(ProjectType1RecyclerAdapter.ViewHolder holder, final int position) {
 
-        holder.department_textview.setText(arrayList.get(position).description);
+        holder.department_textview.setText(arrayList.get(position).event_type);
         holder.title_textview.setText(arrayList.get(position).name);
         Picasso.get().load(arrayList.get(position).poster).into(holder.project_imageview);
 

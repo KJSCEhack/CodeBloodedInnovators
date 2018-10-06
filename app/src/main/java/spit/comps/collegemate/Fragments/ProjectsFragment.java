@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -52,6 +54,29 @@ public class ProjectsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_projects, container, false);
 
         items=new ArrayList<ProjectType1Item>();
+
+        filter_fab = (FloatingActionButton)view.findViewById(R.id.fragment_project_type1_filter_fab);
+
+        filter_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View bottomSheetView = getLayoutInflater().inflate(R.layout.fragment_filter_bottom_sheet, null);
+
+                final BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
+                dialog.setContentView(bottomSheetView);
+                dialog.show();
+
+                Button filter_button=(Button)bottomSheetView.findViewById(R.id.bottom_sheet_filter_apply_btn);
+
+                filter_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+        });
 
         recyclerView=(RecyclerView)view.findViewById(R.id.fragment_project_type1_recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -135,9 +160,10 @@ public class ProjectsFragment extends Fragment {
             for(int i=0;i<result.length();i++)
             {
                 JSONObject js = result.getJSONObject(i);
+                String event_id = js.getString("pk");
+
 
                 JSONObject c = js.getJSONObject("fields");
-
                 String name = c.getString("name");
 
                 String organizer = c.getString("organizer");
@@ -154,7 +180,7 @@ public class ProjectsFragment extends Fragment {
 
                 String event_type = c.getString("event_type");
 
-                ProjectType1Item object = new ProjectType1Item(String.valueOf(i+1),
+                ProjectType1Item object = new ProjectType1Item(event_id,
                         name,organizer,contact,date,venue,description,time,
                         regs,poster,event_type);
 
@@ -168,6 +194,4 @@ public class ProjectsFragment extends Fragment {
             return 0;
         }
     }
-
-
 }
