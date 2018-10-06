@@ -3,10 +3,12 @@ package spit.comps.collegemate;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,17 +20,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.altbeacon.beacon.BeaconConsumer;
+import org.altbeacon.beacon.BeaconManager;
+import org.altbeacon.beacon.BeaconParser;
+import org.altbeacon.beacon.Identifier;
+import org.altbeacon.beacon.MonitorNotifier;
+import org.altbeacon.beacon.Region;
 
 import spit.comps.collegemate.Fragments.Home2Fragment;
 import spit.comps.collegemate.Fragments.ProjectsFragment;
 import spit.comps.collegemate.HelperClasses.AppConstants;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, BeaconConsumer, MonitorNotifier {
 
     FragmentManager fm;
     FrameLayout HomeScreen_FragmentContainer;
-
+    BeaconManager mBeaconManager;
     String backStageName;
 
     @Override
@@ -93,6 +103,52 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
+    public void onResume() {
+        super.onResume();
+        mBeaconManager = BeaconManager.getInstanceForApplication(this.getApplicationContext());
+        // Detect the main Eddystone-UID frame:
+        mBeaconManager.getBeaconParsers().add(new BeaconParser().
+                setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
+        mBeaconManager.bind(this);
+
+    }
+
+    @Override
+    public void onBeaconServiceConnect() {
+        // Set the two identifiers below to null to detect any beacon regardless of identifiers
+        //Identifier myBeaconNamespaceId = Identifier.parse("e9885047b7feedcf9865");
+        Identifier myBeaconNamespaceId = Identifier.parse("0195d091a1fa7be139dc");
+        Identifier myBeaconInstanceId = Identifier.parse("000000000000");
+        Region region = new Region("my-beacon-region", myBeaconNamespaceId, myBeaconInstanceId, null);
+        mBeaconManager.addMonitorNotifier(this);
+        try {
+            mBeaconManager.startMonitoringBeaconsInRegion(region);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void didEnterRegion(Region region) {
+        Toast.makeText(this, "Attendance marked for "+ region.getId1(), Toast.LENGTH_LONG).show();
+        Log.d("entrl", "I detected a beacon in the region with namespace id " + region.getId1() +
+                " and instance id: " + region.getId2());
+    }
+
+    public void didExitRegion(Region region) {
+    }
+
+    public void didDetermineStateForRegion(int state, Region region) {
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mBeaconManager.unbind(this);
+    }
+
+
 
     @Override
     public void onBackPressed() {
