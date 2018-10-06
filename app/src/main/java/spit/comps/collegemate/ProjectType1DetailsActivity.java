@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,7 +18,13 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
 import spit.comps.collegemate.HelperClasses.AppConstants;
+import spit.comps.collegemate.HelperClasses.RequestHandler;
 
 public class ProjectType1DetailsActivity extends AppCompatActivity {
 
@@ -42,6 +49,8 @@ public class ProjectType1DetailsActivity extends AppCompatActivity {
                 if (event_status.equals("0"))
                 {
                     //API
+                    addLikes(getIntent().getStringExtra("Email"),getIntent().getStringExtra("Event_id"));
+
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString(getIntent().getStringExtra("Event_id"), "1");
                     editor.commit();
@@ -88,6 +97,8 @@ public class ProjectType1DetailsActivity extends AppCompatActivity {
                 if (event_status.equals("0"))
                 {
                     //API
+                    addRegister(getIntent().getStringExtra("Email"),getIntent().getStringExtra("Event_id"));
+
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString(getIntent().getStringExtra("Event_id"), "1");
                     editor.commit();
@@ -100,5 +111,64 @@ public class ProjectType1DetailsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void addLikes(final String email, final String pk) {
+        class GetJSON extends AsyncTask<Void, Void, String> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(String s)
+            {
+                super.onPostExecute(s);
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                HashMap<String,String> args = new HashMap<>();
+                args.put("email",email);
+                args.put("pk",pk);
+
+                RequestHandler rh = new RequestHandler();
+                String s = rh.sendPostRequest(AppConstants.event_like,args);
+                return s;
+            }
+        }
+        GetJSON gj = new GetJSON();
+        gj.execute();
+    }
+
+
+    private void addRegister(final String email, final String pk) {
+        class GetJSON extends AsyncTask<Void, Void, String> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(String s)
+            {
+                super.onPostExecute(s);
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                HashMap<String,String> args = new HashMap<>();
+                args.put("email",email);
+                args.put("pk",pk);
+
+                RequestHandler rh = new RequestHandler();
+                String s = rh.sendPostRequest(AppConstants.event_register,args);
+                return s;
+            }
+        }
+        GetJSON gj = new GetJSON();
+        gj.execute();
     }
 }

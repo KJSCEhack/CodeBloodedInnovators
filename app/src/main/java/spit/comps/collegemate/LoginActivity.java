@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.messaging.FirebaseMessaging;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     Button login_button;
 
     String JSON_NEWS_STRING="";
+
+    FirebaseMessaging firebaseMessaging;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +124,10 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("email",email);
             editor.putString("branch",branch);
             editor.putString("year",year);
+
+            FirebaseMessaging.getInstance().subscribeToTopic(branch);
+            FirebaseMessaging.getInstance().subscribeToTopic(year);
+
             editor.commit();
             return 1;
             /*

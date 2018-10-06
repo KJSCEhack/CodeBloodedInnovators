@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import spit.comps.collegemate.Fragments.Home2Fragment;
 import spit.comps.collegemate.Fragments.ProjectsFragment;
+import spit.comps.collegemate.Fragments.TimeTableFragment;
 import spit.comps.collegemate.HelperClasses.AppConstants;
 
 public class MainActivity extends AppCompatActivity
@@ -152,10 +153,13 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.HomeScreen_FragmentContainer, new AnnouncementFragment());
             fragmentTransaction.addToBackStack(null).commit();
         }
-        /*
-        else if (id == R.id.nav_events) {
 
+        else if (id == R.id.nav_timetable) {
+            getSupportFragmentManager().popBackStackImmediate();
+            fragmentTransaction.replace(R.id.HomeScreen_FragmentContainer, new TimeTableFragment());
+            fragmentTransaction.addToBackStack(null).commit();
         }
+        /*
         else if (id == R.id.nav_timetable) {
 
         }
